@@ -1,0 +1,10 @@
+# Dependencias para desarrollar y publicar RESG PDF Studio
+# Uso:  pip install -r requirements-dev.txt
+
+-r requirements.txt
+
+# Empaquetado del ejecutable
+pyinstaller>=6.4
+
+# Utilidades de desarrollo (opcionales)
+ruff>=0.4            # análisis estático ligero

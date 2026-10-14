@@ -1,0 +1,53 @@
+name: Compilar el .exe
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  windows:
+    name: Ejecutable para Windows
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Pruebas antes de empaquetar
+        run: |
+          python tools/selftest.py
+          python tools/gui_smoke.py
+
+      - name: Generar el ejecutable
+        run: pyinstaller resg_pdf_studio.spec --clean --noconfirm
+
+      - name: Comprobar el ejecutable
+        shell: pwsh
+        run: |
+          if (-not (Test-Path dist/RESG-PDF-Studio.exe)) {
+            throw "No se generó dist/RESG-PDF-Studio.exe"
+          }
+          Get-Item dist/RESG-PDF-Studio.exe | Select-Object Name, Length
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RESG-PDF-Studio-windows
+          path: dist/RESG-PDF-Studio.exe
+
+      - name: Publicar en la release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/RESG-PDF-Studio.exe
+          generate_release_notes: true

@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------- Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.python-version
+
+# -------------------------------------------------------- PyInstaller/build
+build/
+dist/
+*.manifest
+*.spec.bak
+*.log
+
+# ------------------------------------------------------------- pruebas/temp
+_capture/
+*.tmp
+*.temp
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ------------------------------------------------------------------ editores
+.idea/
+.vscode/*
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# ----------------------------------------------------------------- Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# -------------------------------------------------------------------- macOS
+.DS_Store
+._*
+
+# ------------------------------------------- archivos temporales del proyecto
+_*.txt
+_*.py
+_*.log
+*.bak

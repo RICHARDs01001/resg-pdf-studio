@@ -1,0 +1,16 @@
+# RESG PDF Studio — dependencias
+# Interfaz
+PyQt6>=6.6
+# Motor PDF principal
+PyMuPDF>=1.24
+pypdf>=4.0
+# Conversiones
+pdf2docx>=0.5.8
+python-pptx>=0.6.21
+pdfplumber>=0.11
+openpyxl>=3.1
+# Imágenes
+Pillow>=10.0
+numpy>=1.26
+# Escáner en Windows (opcional, solo si usas "Escanea a PDF" con escáner)
+pywin32; sys_platform == "win32"
